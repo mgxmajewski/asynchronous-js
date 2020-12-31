@@ -21,17 +21,18 @@ function generateHTML(data) {
   const section = document.createElement('section');
   peopleList.appendChild(section);
   section.innerHTML = `
-    <img src=${data.thumbnail.source}>
+    <img src=${data.thumbnail.source} alt="Picture not available">
     <h2>${data.title}</h2>
     <p>${data.description}</p>
     <p>${data.extract}</p>
   `;
 }
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click', (e) => {
   getJSON(astrosUrl, (json) => {
     json.people.map( person => {
       getJSON(wikiUrl + person.name, generateHTML);
     });
   });
+  e.target.remove();
 });
