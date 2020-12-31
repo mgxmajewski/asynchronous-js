@@ -21,7 +21,7 @@ function generateHTML(data) {
   const section = document.createElement('section');
   peopleList.appendChild(section);
   section.innerHTML = `
-    <img src=${data.thumbnail.source} alt="Picture not available">
+    <img src=${data.thumbnail.source} alt="">
     <h2>${data.title}</h2>
     <p>${data.description}</p>
     <p>${data.extract}</p>
