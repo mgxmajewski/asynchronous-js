@@ -10,7 +10,7 @@ function getJSON(url) {
   xhr.onload = () => {
     if(xhr.status === 200) {
       let data = JSON.parse(xhr.responseText);
-      console.log(data);
+      generateHTML(data);
     }
   };
   xhr.send();
@@ -27,3 +27,5 @@ function generateHTML(data) {
     <p>${data.extract}</p>
   `;
 }
+
+btn.addEventListener('click', () => getJSON(astrosUrl));
