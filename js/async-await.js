@@ -41,14 +41,15 @@ function generateHTML(data) {
   });
 }
 
-btn.addEventListener('click',  (event) => {
-  event.target.textContent = "Loading...";
-
-  getPeopleInSpace(astrosUrl)
-    .then (generateHTML)
-    .catch( e => {
-      peopleList.innerHTML = '<h3>Something went wrong</h3>';
-      console.error(e);
-    })
-    .finally(() => event.target.remove())
+btn.addEventListener('click', async (event) => {
+  event.target.textContent = 'Loading...';
+  try {
+    const astros = await getPeopleInSpace(astrosUrl);
+    generateHTML(astros);
+  } catch(e) {
+    astrosList.innerHTML = '<h3>Something went wrong!</h3>';
+    console.error(e);
+  } finally {
+    event.target.remove();
+  }
 });
