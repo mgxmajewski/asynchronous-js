@@ -1,7 +1,14 @@
-const breakfastPromise = new Promise(() => {
-    setTimeout(()=>{
+const order = false;
 
-    }, 3000);
+const breakfastPromise = new Promise((resolve, reject) => {
+    setTimeout(()=>{
+        if (order) {
+            resolve('Your order is ready.');
+        } else {
+            reject( Error('Oh no. Problem with your order;(') );
+        }
+    }, 1500);
 });
 
 console.log(breakfastPromise);
+breakfastPromise.then(val => console.log(val)).catch( err => console.log(err));
