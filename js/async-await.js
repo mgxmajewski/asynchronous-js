@@ -13,7 +13,7 @@ const btn = document.querySelector('button');
      const profileResponse = await fetch(wikiUrl + person.name);
      const profileJSON = await profileResponse.json();
 
-     return {...profileJSON, craft}
+     return {...profileJSON, craft};
    });
 
    return Promise.all(profiles);
@@ -34,10 +34,10 @@ function generateHTML(data) {
   });
 }
 
-btn.addEventListener('click', async (event) => {
+btn.addEventListener('click',  (event) => {
   event.target.textContent = "Loading...";
 
-  const astros = await getPeopleInSpace(astrosUrl);
-  generateHTML(astros);
-  event.target.remove();
+  getPeopleInSpace(astrosUrl)
+    .then (generateHTML)
+    .finally(() => event.target.remove())
 });
